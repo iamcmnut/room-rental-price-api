@@ -43,13 +43,20 @@ jobs:
     - run: yarn install
     - run: yarn build
     - run: yarn test
-    - run: yarn build
-    - name: rename main.js
-      run: mv dist/main.js dist/app.js
+  
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
     - name: Zip build
       uses: vimtor/action-zip@v1
       with:
-        files: dist/
+        files: ./
         dest: deploy.zip
 
     - name: Deploy to EB
