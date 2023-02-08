@@ -28,12 +28,17 @@ export class PriceService {
       }
     }
 
-    if (price) {
-      roomPrice.inputprice = price
-      roomPrice.priceDiffRatio = (price - roomPrice.baseline) / roomPrice.baseline
+    const res: RoomPrice = {
+      location: roomPrice.location,
+      baseline: roomPrice.baseline,
     }
 
-    return roomPrice;
+    if (price) {
+      res.inputprice = price
+      res.priceDiffRatio = (price - roomPrice.baseline) / roomPrice.baseline
+    }
+
+    return res;
   }
 
   public addPrice(location: string, baselinePrice: number): RoomPrice {
