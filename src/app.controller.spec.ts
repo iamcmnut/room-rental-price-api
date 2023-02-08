@@ -16,7 +16,8 @@ describe('AppController', () => {
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+      expect(appController.getHello()).toBe('Usage: GET /price/sathon?price=15000'
+      + '<br> Note: This api ignore the room size');
     });
   });
 });
