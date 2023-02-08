@@ -26,11 +26,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-
-    - name: Build
-      run:
-        - yarn install
-        - yarn build
-
-    - name: Test
-      run: yarn test
+    - run: yarn install
+    - run: yarn build
+    - run: yarn test
+    - run: yarn build
+    - name: Zip build
+      uses: vimtor/action-zip@v1
+      with:
+        files: dist/
+        dest: deploy.zip
